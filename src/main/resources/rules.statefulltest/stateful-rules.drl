@@ -1,0 +1,16 @@
+package rules
+dialect "java"
+
+import statefulltest.Fire;
+import statefulltest.Alarm;
+import statefulltest.Room;
+import statefulltest.Sprinkler;
+
+rule "When there is a fire turn on the sprinkler"
+    when
+        Fire($room: room)
+        $sprinkler: Sprinkler( room == $room, on ==false)
+    then
+        modify($sprinkler) {setOn(true)};
+        System.out.println("Turn on the sprinkler for room " + $room.getName());
+end

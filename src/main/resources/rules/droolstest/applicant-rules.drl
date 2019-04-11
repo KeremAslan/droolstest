@@ -1,0 +1,14 @@
+package rules
+dialect "java"
+
+
+import droolstest.Applicant
+
+rule "isAdult"
+    when
+        $a: droolstest.Applicant(age > 18)
+    then
+        $a.setValid(true);
+end
+
+
